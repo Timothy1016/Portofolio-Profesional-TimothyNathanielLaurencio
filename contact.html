@@ -4,7 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="description" content="Contact Timothy Nathaniel Laurencio — software engineer and Computer Science graduate.">
-<meta name="theme-color" content="#07111f">
+<meta name="theme-color" content="#060b13">
+<script>
+(()=>{
+  /* One-time migration: this release changes the portfolio default to DARK.
+     Existing visitors who previously had light saved are moved to dark once.
+     After that, their manual theme choice is preserved normally. */
+  const THEME_KEY = 'portfolio-theme';
+  const MIGRATION_KEY = 'portfolio-dark-default-v5';
+  try {
+    if (localStorage.getItem(MIGRATION_KEY) !== '1') {
+      localStorage.setItem(THEME_KEY, 'dark');
+      localStorage.setItem(MIGRATION_KEY, '1');
+    }
+    const theme = localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.classList.toggle('dark-preload', theme === 'dark');
+    document.documentElement.style.background = theme === 'dark' ? '#060b13' : '#f6f8fb';
+    document.documentElement.style.colorScheme = theme;
+  } catch (e) {
+    document.documentElement.dataset.theme = 'dark';
+    document.documentElement.classList.add('dark-preload');
+    document.documentElement.style.background = '#060b13';
+    document.documentElement.style.colorScheme = 'dark';
+  }
+})();
+</script>
 <meta property="og:title" content="Contact Timothy | Software Engineer">
 <meta property="og:description" content="Connect with Timothy Nathaniel Laurencio for software, collaboration, research, and website projects.">
 <meta property="og:type" content="website">
@@ -14,8 +39,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
+<style>html.dark-preload,html.dark-preload body{background:#060b13;color-scheme:dark}
 :root{--bg:#f6f8fb;--bg2:#edf3f8;--surface:#fff;--surface2:#f8fafc;--glass:rgba(255,255,255,.84);--ink:#07111f;--text:#101827;--soft:#58687b;--muted:#8492a4;--border:rgba(7,17,31,.10);--blue:#0ea5e9;--cyan:#38bdf8;--teal:#14b8a6;--green:#22c55e;--orange:#f97316;--pink:#ec4899;--purple:#8b5cf6;--shadow-sm:0 12px 34px rgba(13,27,42,.07);--shadow-md:0 28px 70px rgba(13,27,42,.12);--shadow-lg:0 48px 120px rgba(13,27,42,.18);--max:1180px}
+html[data-theme="dark"]{background:#060b13;color-scheme:dark}
 body.dark{--bg:#060b13;--bg2:#0a111c;--surface:#101826;--surface2:#131d2c;--glass:rgba(9,15,25,.84);--text:#f8fafc;--soft:#c2cedb;--muted:#8795a8;--border:rgba(255,255,255,.10);--shadow-sm:0 14px 40px rgba(0,0,0,.25);--shadow-md:0 30px 80px rgba(0,0,0,.40);--shadow-lg:0 55px 130px rgba(0,0,0,.55)}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:120px}body{min-height:100vh;overflow-x:hidden;font-family:"Inter Tight",sans-serif;color:var(--text);background:var(--bg);line-height:1.65;letter-spacing:-.01em;transition:background .3s,color .3s}h1,h2,h3{font-family:"Sora",sans-serif}a{color:inherit}button,input,textarea,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}img{display:block;width:100%}::selection{background:var(--cyan);color:var(--ink)}
 .page-grid{position:fixed;inset:0;z-index:-20;pointer-events:none;background-image:linear-gradient(rgba(7,17,31,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(7,17,31,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 94%)}body.dark .page-grid{opacity:.22}.ambient{position:fixed;z-index:-18;width:520px;height:520px;border-radius:50%;filter:blur(120px);opacity:.12;pointer-events:none}.ambient.one{left:-230px;top:-200px;background:var(--cyan)}.ambient.two{right:-250px;top:45%;background:var(--teal)}
@@ -82,9 +108,9 @@ const I18N={en:{navWork:'Work',navAbout:'About',navSkills:'Skills',navJourney:'J
 let currentLanguage=localStorage.getItem('portfolio-language')==='zh'?'zh':'en';let soundEnabled=localStorage.getItem('portfolio-sound')!=='off';let audioCtx=null;
 function playSound(freq=520,duration=.045){if(!soundEnabled)return;try{audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(.028,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+duration);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+duration)}catch(e){}}
 function applyLanguage(lang){currentLanguage=I18N[lang]?lang:'en';localStorage.setItem('portfolio-language',currentLanguage);document.documentElement.lang=currentLanguage==='zh'?'zh-CN':'en';document.querySelectorAll('[data-i18n]').forEach(el=>{const v=I18N[currentLanguage]?.[el.dataset.i18n];if(v!==undefined)el.textContent=v});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const v=I18N[currentLanguage]?.[el.dataset.i18nPlaceholder];if(v!==undefined)el.placeholder=v});document.getElementById('language-button').textContent=currentLanguage==='en'?'中文':'EN';window.dispatchEvent(new CustomEvent('portfolio-language-change',{detail:{language:currentLanguage}}))}
-function applyTheme(theme){document.body.classList.toggle('dark',theme==='dark');localStorage.setItem('portfolio-theme',theme);document.getElementById('theme-icon').className=theme==='dark'?'fa-solid fa-sun':'fa-solid fa-moon'}
+function applyTheme(theme){theme=theme==='light'?'light':'dark';document.body.classList.toggle('dark',theme==='dark');document.documentElement.dataset.theme=theme;document.documentElement.style.background=theme==='dark'?'#060b13':'#f6f8fb';localStorage.setItem('portfolio-theme',theme);const themeColor=document.querySelector('meta[name="theme-color"]');if(themeColor)themeColor.setAttribute('content',theme==='dark'?'#060b13':'#f6f8fb');document.getElementById('theme-icon').className=theme==='dark'?'fa-solid fa-sun':'fa-solid fa-moon'}
 function updateSound(){document.getElementById('sound-icon').className=soundEnabled?'fa-solid fa-volume-high':'fa-solid fa-volume-xmark';document.getElementById('sound-button').setAttribute('aria-pressed',String(!soundEnabled))}
-function init(){document.getElementById('year').textContent=new Date().getFullYear();applyTheme(localStorage.getItem('portfolio-theme')||'light');applyLanguage(currentLanguage);updateSound();document.getElementById('language-button').addEventListener('click',()=>{applyLanguage(currentLanguage==='en'?'zh':'en');playSound(660,.055)});document.getElementById('theme-button').addEventListener('click',()=>{applyTheme(document.body.classList.contains('dark')?'light':'dark');playSound()});document.getElementById('sound-button').addEventListener('click',()=>{soundEnabled=!soundEnabled;localStorage.setItem('portfolio-sound',soundEnabled?'on':'off');updateSound();if(soundEnabled)playSound(720,.07)});document.querySelectorAll('a,button').forEach(el=>{if(el.id!=='sound-button')el.addEventListener('click',()=>playSound())});const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));const progress=document.getElementById('scroll-progress');const update=()=>{const h=document.documentElement.scrollHeight-innerHeight;progress.style.width=(h>0?scrollY/h*100:0)+'%'};addEventListener('scroll',update,{passive:true});update()}
+function init(){document.getElementById('year').textContent=new Date().getFullYear();const savedTheme=localStorage.getItem('portfolio-theme');applyTheme(savedTheme==='light'||savedTheme==='dark'?savedTheme:'dark');applyLanguage(currentLanguage);updateSound();document.getElementById('language-button').addEventListener('click',()=>{applyLanguage(currentLanguage==='en'?'zh':'en');playSound(660,.055)});document.getElementById('theme-button').addEventListener('click',()=>{applyTheme(document.body.classList.contains('dark')?'light':'dark');playSound()});document.getElementById('sound-button').addEventListener('click',()=>{soundEnabled=!soundEnabled;localStorage.setItem('portfolio-sound',soundEnabled?'on':'off');updateSound();if(soundEnabled)playSound(720,.07)});document.querySelectorAll('a,button').forEach(el=>{if(el.id!=='sound-button')el.addEventListener('click',()=>playSound())});const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));const progress=document.getElementById('scroll-progress');const update=()=>{const h=document.documentElement.scrollHeight-innerHeight;progress.style.width=(h>0?scrollY/h*100:0)+'%'};addEventListener('scroll',update,{passive:true});update()}
 document.addEventListener('DOMContentLoaded',init);
 document.getElementById('save-contact').addEventListener('click',()=>{const card=`BEGIN:VCARD\nVERSION:3.0\nFN:Timothy Nathaniel Laurencio\nN:Laurencio;Timothy Nathaniel;;;\nTITLE:Software Engineer\nEMAIL:timothynathaniellaurencio@gmail.com\nTEL;TYPE=CELL:+6285286289012\nURL:https://github.com/Timothy1016\nNOTE:Software Engineer and Computer Science graduate.\nEND:VCARD`;const blob=new Blob([card],{type:'text/vcard'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='Timothy-Nathaniel-Laurencio.vcf';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
 document.getElementById('contact-form').addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.currentTarget);const subject=encodeURIComponent('Website / Collaboration Inquiry — '+d.get('type'));const body=encodeURIComponent(`Hi Timothy,\n\nMy name is ${d.get('name')}.\nEmail: ${d.get('email')}\nProject: ${d.get('type')}\nTimeline: ${d.get('timeline')}\n\n${d.get('message')}\n\nThank you.`);location.href=`mailto:timothynathaniellaurencio@gmail.com?subject=${subject}&body=${body}`});

@@ -1,12 +1,38 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="Portfolio of Timothy Nathaniel Laurencio — software engineer, Computer Science graduate, and technology enthusiast."><meta name="theme-color" content="#07111f">
+<meta name="description" content="Portfolio of Timothy Nathaniel Laurencio — software engineer, Computer Science graduate, and technology enthusiast."><meta name="theme-color" content="#060b13">
+<script>
+(()=>{
+  /* One-time migration: this release changes the portfolio default to DARK.
+     Existing visitors who previously had light saved are moved to dark once.
+     After that, their manual theme choice is preserved normally. */
+  const THEME_KEY = 'portfolio-theme';
+  const MIGRATION_KEY = 'portfolio-dark-default-v5';
+  try {
+    if (localStorage.getItem(MIGRATION_KEY) !== '1') {
+      localStorage.setItem(THEME_KEY, 'dark');
+      localStorage.setItem(MIGRATION_KEY, '1');
+    }
+    const theme = localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.classList.toggle('dark-preload', theme === 'dark');
+    document.documentElement.style.background = theme === 'dark' ? '#060b13' : '#f6f8fb';
+    document.documentElement.style.colorScheme = theme;
+  } catch (e) {
+    document.documentElement.dataset.theme = 'dark';
+    document.documentElement.classList.add('dark-preload');
+    document.documentElement.style.background = '#060b13';
+    document.documentElement.style.colorScheme = 'dark';
+  }
+})();
+</script>
+
 <meta property="og:title" content="Timothy Nathaniel Laurencio | Software Engineer"><meta property="og:description" content="Portfolio of Timothy Nathaniel Laurencio — software engineer, Computer Science graduate, and technology enthusiast."><meta property="og:type" content="website">
 <title>Timothy Nathaniel Laurencio | Software Engineer</title><link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
+<style>html.dark-preload,html.dark-preload body{background:#060b13;color-scheme:dark}
 :root{
   --bg:#f6f8fb;--bg2:#edf3f8;--surface:#fff;--surface2:#f8fafc;--glass:rgba(255,255,255,.82);
   --ink:#07111f;--text:#101827;--soft:#58687b;--muted:#8492a4;--border:rgba(7,17,31,.10);
@@ -122,9 +148,9 @@ let audioCtx=null;
 function playSound(freq=520,duration=.045){if(!soundEnabled)return;try{audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(.028,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+duration);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+duration)}catch(e){}}
 function t(k){return I18N[currentLanguage]?.[k]??I18N.en?.[k]??k}
 function applyLanguage(lang){currentLanguage=I18N[lang]?lang:'en';localStorage.setItem('portfolio-language',currentLanguage);document.documentElement.lang=currentLanguage==='zh'?'zh-CN':'en';document.querySelectorAll('[data-i18n]').forEach(el=>{const v=I18N[currentLanguage]?.[el.dataset.i18n];if(v!==undefined)el.textContent=v});document.querySelectorAll('[data-i18n-html]').forEach(el=>{const v=I18N[currentLanguage]?.[el.dataset.i18nHtml];if(v!==undefined)el.innerHTML=v});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const v=I18N[currentLanguage]?.[el.dataset.i18nPlaceholder];if(v!==undefined)el.placeholder=v});const b=document.getElementById('language-button');if(b)b.textContent=currentLanguage==='en'?'中文':'EN';window.dispatchEvent(new CustomEvent('portfolio-language-change',{detail:{language:currentLanguage}}))}
-function applyTheme(theme){document.body.classList.toggle('dark',theme==='dark');localStorage.setItem('portfolio-theme',theme);const i=document.getElementById('theme-icon');if(i)i.className=theme==='dark'?'fa-solid fa-sun':'fa-solid fa-moon'}
+function applyTheme(theme){document.body.classList.toggle('dark',theme==='dark');document.documentElement.classList.remove('dark-preload');localStorage.setItem('portfolio-theme',theme);const i=document.getElementById('theme-icon');if(i)i.className=theme==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';const meta=document.querySelector('meta[name=\"theme-color\"]');if(meta)meta.setAttribute('content',theme==='dark'?'#060b13':'#f6f8fb')}
 function updateSound(){const i=document.getElementById('sound-icon');if(i)i.className=soundEnabled?'fa-solid fa-volume-high':'fa-solid fa-volume-xmark';const b=document.getElementById('sound-button');if(b)b.setAttribute('aria-pressed',String(!soundEnabled))}
-function initCommon(){document.getElementById('year').textContent=new Date().getFullYear();applyTheme(localStorage.getItem('portfolio-theme')||'light');applyLanguage(currentLanguage);updateSound();document.getElementById('language-button')?.addEventListener('click',()=>{applyLanguage(currentLanguage==='en'?'zh':'en');playSound(660,.055)});document.getElementById('theme-button')?.addEventListener('click',()=>{applyTheme(document.body.classList.contains('dark')?'light':'dark');playSound()});document.getElementById('sound-button')?.addEventListener('click',()=>{soundEnabled=!soundEnabled;localStorage.setItem('portfolio-sound',soundEnabled?'on':'off');updateSound();if(soundEnabled)playSound(720,.07)});document.querySelectorAll('a,button').forEach(el=>{if(el.id!=='sound-button')el.addEventListener('click',()=>playSound())});const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));const progress=document.getElementById('scroll-progress');const update=()=>{if(!progress)return;const h=document.documentElement.scrollHeight-innerHeight;progress.style.width=(h>0?scrollY/h*100:0)+'%'};addEventListener('scroll',update,{passive:true});update()}
+function initCommon(){document.getElementById('year').textContent=new Date().getFullYear();applyTheme(localStorage.getItem('portfolio-theme')||'dark');applyLanguage(currentLanguage);updateSound();document.getElementById('language-button')?.addEventListener('click',()=>{applyLanguage(currentLanguage==='en'?'zh':'en');playSound(660,.055)});document.getElementById('theme-button')?.addEventListener('click',()=>{applyTheme(document.body.classList.contains('dark')?'light':'dark');playSound()});document.getElementById('sound-button')?.addEventListener('click',()=>{soundEnabled=!soundEnabled;localStorage.setItem('portfolio-sound',soundEnabled?'on':'off');updateSound();if(soundEnabled)playSound(720,.07)});document.querySelectorAll('a,button').forEach(el=>{if(el.id!=='sound-button')el.addEventListener('click',()=>playSound())});const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));const progress=document.getElementById('scroll-progress');const update=()=>{if(!progress)return;const h=document.documentElement.scrollHeight-innerHeight;progress.style.width=(h>0?scrollY/h*100:0)+'%'};addEventListener('scroll',update,{passive:true});update()}
 document.addEventListener('DOMContentLoaded',initCommon);
 window.portfolioUI={playSound,t,applyLanguage,get language(){return currentLanguage}};
 
