@@ -1,116 +1,446 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="description" content="Interactive global journey and travel memories of Timothy Nathaniel Laurencio."><meta name="theme-color" content="#060b13">
-<script>
-(()=>{
-  /* One-time migration: this release changes the portfolio default to DARK.
-     Existing visitors who previously had light saved are moved to dark once.
-     After that, their manual theme choice is preserved normally. */
-  const THEME_KEY = 'portfolio-theme';
-  const MIGRATION_KEY = 'portfolio-dark-default-v5';
-  try {
-    if (localStorage.getItem(MIGRATION_KEY) !== '1') {
-      localStorage.setItem(THEME_KEY, 'dark');
-      localStorage.setItem(MIGRATION_KEY, '1');
-    }
-    const theme = localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.classList.toggle('dark-preload', theme === 'dark');
-    document.documentElement.style.background = theme === 'dark' ? '#060b13' : '#f6f8fb';
-    document.documentElement.style.colorScheme = theme;
-  } catch (e) {
-    document.documentElement.dataset.theme = 'dark';
-    document.documentElement.classList.add('dark-preload');
-    document.documentElement.style.background = '#060b13';
-    document.documentElement.style.colorScheme = 'dark';
-  }
-})();
-</script>
-<meta property="og:title" content="Travel | Timothy Nathaniel Laurencio"><meta property="og:description" content="Interactive globe, flight route, cities, and travel memories."><meta property="og:type" content="website"><title>Travel | Timothy Nathaniel Laurencio</title><link rel="icon" type="image/png" sizes="96x96" href="favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><style>html.dark-preload,html.dark-preload body{background:#060b13;color-scheme:dark}
-:root{--bg:#f6f8fb;--surface:#fff;--surface2:#f8fafc;--glass:rgba(255,255,255,.84);--ink:#07111f;--text:#101827;--soft:#58687b;--muted:#8492a4;--border:rgba(7,17,31,.10);--blue:#0ea5e9;--cyan:#38bdf8;--teal:#14b8a6;--shadow-sm:0 12px 34px rgba(13,27,42,.07);--shadow-lg:0 48px 120px rgba(13,27,42,.18);--max:1180px}body.dark{--bg:#060b13;--surface:#101826;--surface2:#131d2c;--glass:rgba(9,15,25,.84);--text:#f8fafc;--soft:#c2cedb;--muted:#8795a8;--border:rgba(255,255,255,.10);--shadow-sm:0 14px 40px rgba(0,0,0,.25);--shadow-lg:0 55px 130px rgba(0,0,0,.55)}*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:120px}body{min-height:100vh;overflow-x:hidden;font-family:"Inter Tight",sans-serif;color:var(--text);background:var(--bg);line-height:1.65;transition:background .3s,color .3s}h1,h2{font-family:"Sora",sans-serif}a{color:inherit}button{font:inherit}.page-grid{position:fixed;inset:0;z-index:-20;pointer-events:none;background-image:linear-gradient(rgba(7,17,31,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(7,17,31,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 94%)}body.dark .page-grid{opacity:.22}#scroll-progress{position:fixed;left:0;top:0;z-index:999999;width:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--teal))}.container{width:min(var(--max),calc(100% - 42px));margin:auto}
-header{position:fixed;left:50%;top:15px;z-index:10000;transform:translateX(-50%);width:min(var(--max),calc(100% - 28px));border:1px solid var(--border);border-radius:20px;background:var(--glass);backdrop-filter:blur(24px);box-shadow:var(--shadow-sm)}.navbar{min-height:84px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:26px}.nav-links{display:flex;gap:26px;align-items:center}.nav-links a{position:relative;text-decoration:none;color:var(--soft);font-size:.84rem;font-weight:650;white-space:nowrap}.nav-links a:after{content:"";position:absolute;left:0;bottom:-8px;width:0;height:2px;background:var(--blue);border-radius:999px;transition:width .2s}.nav-links a:hover,.nav-links a.active{color:var(--text)}.nav-links a:hover:after,.nav-links a.active:after{width:100%}.nav-actions{display:flex;gap:9px;align-items:center}.nav-tool{min-width:47px;height:47px;padding:0 11px;border:1px solid var(--border);border-radius:13px;background:var(--surface2);color:var(--text);cursor:pointer;font-size:.76rem;font-weight:750}.nav-contact{min-height:47px;padding:0 18px;display:inline-flex;align-items:center;border-radius:13px;background:var(--ink);color:#fff;text-decoration:none;font-size:.78rem;font-weight:750}body.dark .nav-contact{background:#fff;color:var(--ink)}.nav-sound{color:var(--blue)}
-main{padding-top:120px}.hero{padding:62px 0 42px}.hero-shell{padding:52px;border-radius:32px;background:linear-gradient(135deg,#06101d,#0b283a);color:#fff;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}.hero-shell:after{content:"";position:absolute;width:470px;height:470px;right:-180px;top:-220px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.22),transparent 68%)}.eyebrow{position:relative;z-index:2;display:inline-flex;align-items:center;gap:9px;color:#6fddff;font:500 .64rem "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}.eyebrow:before{content:"";width:25px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--teal))}.hero h1{position:relative;z-index:2;margin-top:18px;font-size:clamp(3rem,6vw,5.8rem);line-height:.95;letter-spacing:-.065em}.hero h1 span{color:#58d7ff}.hero p{position:relative;z-index:2;max-width:700px;margin-top:18px;color:rgba(255,255,255,.6);font-size:1rem;line-height:1.8}.hero-actions{position:relative;z-index:2;display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}.button{min-height:48px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(255,255,255,.12);border-radius:13px;background:rgba(255,255,255,.06);color:#fff;text-decoration:none;font-size:.8rem;font-weight:750}.button.primary{background:#fff;color:#07111f}.map-section{padding:38px 0 94px}.frame-shell{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:34px;background:#03070d;box-shadow:var(--shadow-lg)}.globe-frame{display:block;width:100%;height:900px;border:0;background:#03070d}.frame-note{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 18px;border-top:1px solid rgba(255,255,255,.08);background:#07111f;color:rgba(255,255,255,.6);font-size:.72rem}.frame-note a{color:#6edcff;text-decoration:none;font-weight:750}footer{padding:34px 0 46px;color:var(--muted);font-size:.73rem}.footer-inner{display:flex;justify-content:space-between;gap:18px}.footer-inner a{text-decoration:none}
-@media(max-width:980px){header{top:10px}.navbar{flex-wrap:wrap;padding:10px 13px;gap:9px}.nav-actions{margin-left:auto}.nav-contact{display:none}.nav-links{order:3;width:100%;overflow-x:auto;padding:8px 2px 4px;gap:18px;scrollbar-width:none}.nav-links::-webkit-scrollbar{display:none}main{padding-top:148px}.globe-frame{height:860px}}@media(max-width:680px){.container{width:min(100% - 24px,var(--max))}.hero-shell{padding:36px 22px}.globe-frame{height:900px}.frame-note{display:block}.frame-note a{display:inline-block;margin-top:6px}.footer-inner{display:block}.footer-inner a{display:inline-block;margin-top:8px}}
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<title>Journey — Timothy Nathaniel Laurencio</title>
+<meta name="description" content="Timothy Nathaniel Laurencio's journey, timeline, places, and experiences.">
 
-/* =====================================================
-   INTERACTIVE UPGRADE — terminal / resume / cursor / egg
-===================================================== */
-.resume-modal,.terminal-overlay{position:fixed;inset:0;z-index:90000;display:grid;place-items:center;padding:22px;background:rgba(3,8,15,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease}
-.resume-modal.open,.terminal-overlay.open{opacity:1;visibility:visible}
-.resume-shell{width:min(1040px,96vw);height:min(820px,90vh);display:grid;grid-template-rows:auto 1fr;overflow:hidden;border:1px solid rgba(255,255,255,.13);border-radius:24px;background:#07111f;box-shadow:0 36px 110px rgba(0,0,0,.48)}
-.resume-head{min-height:62px;padding:0 16px 0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid rgba(255,255,255,.09);color:#fff}.resume-head strong{font-family:"Sora",sans-serif;font-size:.92rem}.resume-actions{display:flex;align-items:center;gap:8px}.resume-action{min-height:38px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.06);color:#fff;text-decoration:none;cursor:pointer;font:700 .7rem "Inter Tight",sans-serif}.resume-action:hover{background:rgba(255,255,255,.11)}.resume-frame{width:100%;height:100%;border:0;background:#fff}
-.terminal-launcher{position:fixed;right:22px;bottom:22px;z-index:30000;width:50px;height:50px;border:1px solid var(--border);border-radius:15px;background:var(--surface);color:var(--blue);box-shadow:var(--shadow-sm);cursor:pointer;font:700 .78rem "DM Mono",monospace;transition:transform .2s,border-color .2s,box-shadow .2s}.terminal-launcher:hover{transform:translateY(-4px);border-color:rgba(14,165,233,.45);box-shadow:var(--shadow-md)}
-.terminal-window{width:min(720px,95vw);max-height:min(620px,86vh);overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:#050a11;color:#d7e5f2;box-shadow:0 36px 110px rgba(0,0,0,.55);font-family:"DM Mono",monospace}.terminal-top{min-height:50px;padding:0 15px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);background:#09111c}.terminal-dots{display:flex;gap:7px}.terminal-dots span{width:9px;height:9px;border-radius:50%;background:#334155}.terminal-dots span:nth-child(1){background:#fb7185}.terminal-dots span:nth-child(2){background:#fbbf24}.terminal-dots span:nth-child(3){background:#34d399}.terminal-close{width:32px;height:32px;border:0;border-radius:9px;background:transparent;color:#94a3b8;cursor:pointer}.terminal-close:hover{background:rgba(255,255,255,.06);color:#fff}.terminal-body{height:430px;padding:18px;overflow:auto}.terminal-output{white-space:pre-wrap;line-height:1.7;font-size:.76rem}.terminal-line{margin-bottom:9px}.terminal-system{color:#67e8f9}.terminal-muted{color:#64748b}.terminal-success{color:#5eead4}.terminal-input-row{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;margin-top:8px;color:#67e8f9}.terminal-input{width:100%;border:0;outline:0;background:transparent;color:#f8fafc;font:500 .78rem "DM Mono",monospace;caret-color:#67e8f9}
-.easter-toast,.copy-toast{position:fixed;left:50%;bottom:26px;z-index:95000;transform:translate(-50%,18px);padding:11px 16px;border:1px solid rgba(56,189,248,.22);border-radius:999px;background:#07111f;color:#e6f7ff;box-shadow:0 18px 50px rgba(0,0,0,.28);font:600 .68rem "DM Mono",monospace;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s}.easter-toast.show,.copy-toast.show{opacity:1;transform:translate(-50%,0)}
-@media(pointer:fine){body.has-custom-cursor,body.has-custom-cursor a,body.has-custom-cursor button,body.has-custom-cursor [role="button"]{cursor:none!important}.custom-cursor{position:fixed;left:0;top:0;z-index:999999;width:28px;height:28px;border:1px solid rgba(56,189,248,.65);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:width .16s,height .16s,border-color .16s,background .16s;mix-blend-mode:difference}.custom-cursor-dot{position:fixed;left:0;top:0;z-index:1000000;width:4px;height:4px;border-radius:50%;background:#fff;pointer-events:none;transform:translate(-50%,-50%)}.custom-cursor.hover{width:44px;height:44px;background:rgba(56,189,248,.14);border-color:#67e8f9}}
-@media(max-width:680px){.terminal-launcher{right:14px;bottom:14px;width:46px;height:46px}.resume-modal,.terminal-overlay{padding:10px}.resume-shell{height:88vh}.resume-actions .resume-action span{display:none}.terminal-body{height:390px}}
-</style><link rel="stylesheet" href="site-brand.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#000000;
+  --surface:#090909;
+  --surface-2:#111111;
+  --text:#F1EEE8;
+  --soft:#C3BDB4;
+  --muted:#8D867E;
+  --border:rgba(255,255,255,.10);
+  --accent:#A58D78;
+  --accent-2:#B5A07E;
+  --olive:#858778;
+  --header:rgba(0,0,0,.96);
+}
+
+html[data-theme="light"]{
+  --bg:#EDE3D3;
+  --surface:#F7F0E5;
+  --surface-2:#E9DECE;
+  --text:#241F1A;
+  --soft:#5F564D;
+  --muted:#756A60;
+  --border:rgba(36,31,26,.14);
+  --accent:#806A58;
+  --accent-2:#927B61;
+  --olive:#6F7565;
+  --header:rgba(237,227,211,.95);
+  color-scheme:light;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Times New Roman",Times,serif;
+  transition:background .2s ease,color .2s ease;
+}
+a{color:inherit}
+button,input,textarea,select{font:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1180px,calc(100% - 40px));margin:auto}
+header{
+  position:sticky;top:0;z-index:1000;
+  background:var(--header);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.nav{
+  min-height:68px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+
+
+
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{
+  position:relative;text-decoration:none;color:var(--soft);
+  font-size:.92rem;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-8px;width:0;height:1px;
+  background:var(--accent);transition:width .18s ease;
+}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-tools{display:flex;align-items:center;gap:8px}
+.icon-btn{
+  width:38px;height:38px;border:1px solid var(--border);border-radius:50%;
+  background:transparent;color:var(--text);cursor:pointer;
+}
+.icon-btn:hover{border-color:color-mix(in srgb,var(--accent) 50%,var(--border))}
+.mobile-btn{display:none}
+.mobile-menu{display:none}
+main{overflow:hidden}
+.hero{
+  padding:110px 0 86px;
+  border-bottom:1px solid var(--border);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-bottom:24px;color:var(--accent);
+  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--accent-2)}
+h1,h2,h3,p{margin-top:0}
+h1{
+  max-width:1000px;margin-bottom:26px;
+  font-size:clamp(3.3rem,7.3vw,7.4rem);
+  line-height:.92;letter-spacing:-.045em;font-weight:500;
+}
+h2{
+  font-size:clamp(2.25rem,4.2vw,4.35rem);
+  line-height:.98;letter-spacing:-.035em;font-weight:500;
+}
+p{color:var(--soft);line-height:1.72;font-size:1.03rem}
+.section{padding:96px 0;border-bottom:1px solid var(--border)}
+.section-head{
+  display:grid;grid-template-columns:.42fr 1fr;gap:50px;
+  align-items:start;margin-bottom:54px;
+}
+.section-copy{max-width:690px}
+.button{
+  min-height:44px;padding:0 18px;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  border:1px solid var(--border);border-radius:999px;
+  text-decoration:none;transition:.18s ease;
+}
+.button.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
+.button.secondary{background:transparent;color:var(--text)}
+.button:hover{transform:translateY(-1px)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+footer{padding:34px 0;color:var(--muted)}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;font-size:.88rem}
+.toast{
+  position:fixed;right:18px;bottom:18px;z-index:5000;
+  padding:11px 14px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text);border-radius:10px;
+  opacity:0;transform:translateY(8px);pointer-events:none;transition:.18s ease;
+}
+.toast.show{opacity:1;transform:none}
+@media(max-width:850px){
+  .nav-links{display:none}
+  .mobile-btn{display:inline-grid;place-items:center}
+  .mobile-menu{
+    padding:14px 20px 18px;border-top:1px solid var(--border);
+    background:var(--header)
+  }
+  .mobile-menu.open{display:grid;gap:14px}
+  .mobile-menu a{text-decoration:none;color:var(--soft)}
+  .section-head{grid-template-columns:1fr;gap:20px}
+}
+@media(max-width:600px){
+  .container{width:min(100% - 24px,1180px)}
+  .hero{padding:78px 0 62px}
+  .section{padding:70px 0}
+  h1{font-size:clamp(2.85rem,16vw,4.5rem)}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+
+.journey-hero-grid{display:grid;grid-template-columns:1fr .82fr;gap:60px;align-items:center}
+.campus-card{position:relative}
+.campus-card img.hero-campus{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border)}
+.school-badge{
+  position:absolute;left:18px;bottom:18px;right:18px;
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border:1px solid var(--border);
+  background:color-mix(in srgb,var(--surface) 90%,transparent);
+}
+.school-badge img{width:42px;height:42px;object-fit:contain}
+.school-badge strong{display:block;font-weight:500}
+.school-badge span{color:var(--muted);font-size:.84rem}
+.timeline{position:relative;margin-top:20px}
+.timeline::before{content:"";position:absolute;left:12px;top:10px;bottom:10px;width:1px;background:var(--border)}
+.timeline-item{position:relative;padding:0 0 52px 54px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-dot{
+  position:absolute;left:5px;top:8px;width:15px;height:15px;border-radius:50%;
+  border:1px solid var(--accent);background:var(--bg)
+}
+.timeline-year{color:var(--accent);font-size:.84rem;letter-spacing:.08em;text-transform:uppercase}
+.timeline-item h3{font-size:1.9rem;font-weight:500;margin:7px 0 10px}
+.places-head{display:grid;grid-template-columns:.55fr 1fr;gap:46px;align-items:start}
+.faith-note{
+  margin-top:24px;padding:18px 0;border-top:1px solid var(--border);
+  color:var(--soft);font-style:italic
+}
+.globe-wrap{
+  margin-top:38px;border:1px solid var(--border);background:var(--surface);
+  min-height:620px;overflow:hidden
+}
+.globe-wrap iframe{width:100%;height:620px;border:0;display:block}
+.journey-cta{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
+@media(max-width:850px){
+ .journey-hero-grid,.places-head,.journey-cta{grid-template-columns:1fr}
+ .globe-wrap,.globe-wrap iframe{min-height:720px;height:720px}
+}
+
+
+/* =====================================================================
+   FINAL SITE-WIDE THEME AUDIT
+   Dark = pure black / charcoal with no page-level glow.
+   Light = soft beige.
+   ===================================================================== */
+html[data-theme="dark"],
+html[data-theme="dark"] body{
+  --bg:#000000 !important;
+  --surface:#090909 !important;
+  --surface-2:#111111 !important;
+  --text:#F2EEE8 !important;
+  --soft:#C8C1B8 !important;
+  --muted:#918A82 !important;
+  --border:rgba(255,255,255,.10) !important;
+  --header:rgba(0,0,0,.97) !important;
+  background:#000000 !important;
+  color:#F2EEE8 !important;
+}
+
+html[data-theme="dark"] main,
+html[data-theme="dark"] .hero,
+html[data-theme="dark"] .section,
+html[data-theme="dark"] footer{
+  background:#000000 !important;
+}
+
+html[data-theme="dark"] header{
+  background:rgba(0,0,0,.97) !important;
+  box-shadow:none !important;
+}
+
+html[data-theme="dark"] .button,
+html[data-theme="dark"] .icon-btn{
+  box-shadow:none !important;
+}
+
+html[data-theme="light"],
+html[data-theme="light"] body{
+  --bg:#EDE3D3 !important;
+  --surface:#F7F0E5 !important;
+  --surface-2:#E9DECE !important;
+  --text:#241F1A !important;
+  --soft:#5F564D !important;
+  --muted:#756A60 !important;
+  --border:rgba(36,31,26,.14) !important;
+  --header:rgba(237,227,211,.96) !important;
+  background:#EDE3D3 !important;
+  color:#241F1A !important;
+}
+
+
+
+/* FINAL BLACK / BEIGE BLEND */
+html[data-theme="dark"],html[data-theme="dark"] body{
+  --bg:#000!important;--surface:#090909!important;--surface-2:#111!important;--text:#f2eee8!important;--soft:#c8c1b8!important;--muted:#918a82!important;--border:rgba(255,255,255,.10)!important;
+  background:#000!important;color:#f2eee8!important;
+}
+html[data-theme="light"],html[data-theme="light"] body{
+  --bg:#ede3d3!important;--surface:#f4ecdf!important;--surface-2:#e5d9c7!important;--text:#241f1a!important;--soft:#5f564d!important;--muted:#756a60!important;--border:rgba(36,31,26,.14)!important;
+  background:#ede3d3!important;color:#241f1a!important;
+}
+html[data-theme="dark"] main,html[data-theme="dark"] .hero,html[data-theme="dark"] .section,html[data-theme="dark"] footer{background:#000!important}
+html[data-theme="light"] main,html[data-theme="light"] .hero,html[data-theme="light"] .section,html[data-theme="light"] footer{background:#ede3d3!important}
+.section,.hero{box-shadow:none!important}
+
+
+
+html[data-theme="light"] .timeline-item,html[data-theme="light"] .timeline{background:transparent!important}
+html[data-theme="dark"] .timeline-item,html[data-theme="dark"] .timeline{background:transparent!important}
+html[data-theme="light"] .globe-wrap{background:#e6dac8!important;border-color:rgba(36,31,26,.12)!important}
+html[data-theme="dark"] .globe-wrap{background:#080808!important;border-color:rgba(255,255,255,.08)!important}
+
+</style>
+<link rel="stylesheet" href="site-brand.css">
 <link rel="stylesheet" href="site-header.css">
 <script src="site-header.js" defer></script>
-</head><body id="top"><div id="scroll-progress"></div><div class="page-grid"></div><header id="site-header" data-theme-source="body"><div class="site-header-inner">
+</head>
+<body>
+
+<header id="site-header"><div class="site-header-inner">
 <a class="brand" href="index.html#home" aria-label="Timothy Nathaniel Laurencio — Home"><img src="logo.png" alt="Timothy Nathaniel Laurencio logo" width="76" height="76"></a>
 <nav id="site-primary-nav" class="nav-links" aria-label="Primary navigation">
-<a href="index.html#work" data-i18n="navWork">Work</a>
-<a href="about.html" data-i18n="navAbout">About</a>
-<a href="index.html#skills" data-i18n="navSkills">Skills</a>
-<a class="active" aria-current="page" href="journey.html" data-i18n="navJourney">Journey</a>
-<a href="contact.html" data-i18n="navContact">Contact</a>
+<a href="index.html#work">Work</a>
+<a href="about.html">About</a>
+<a href="index.html#skills">Skills</a>
+<a class="active" aria-current="page" href="journey.html">Journey</a>
+<a href="contact.html">Contact</a>
 </nav>
 <div class="site-header-tools">
-<button aria-label="Toggle sound" id="sound-button" class="nav-tool nav-sound" type="button"><i id="sound-icon" class="fa-solid fa-volume-high"></i></button>
-<button aria-label="Toggle theme" id="theme-button" class="nav-tool" type="button"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
-<button aria-label="Toggle language" id="language-button" class="nav-tool site-language" type="button">中文</button>
+<button aria-label="Toggle sound" class="icon-btn" id="soundBtn" type="button"><i class="fa-solid fa-volume-low"></i></button>
+<button aria-label="Toggle theme" class="icon-btn" id="themeBtn" type="button"><i class="fa-regular fa-sun"></i></button>
+<button aria-label="Toggle language" class="icon-btn site-language" id="langBtn" type="button">中文</button>
 <button id="site-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-primary-nav"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
-</div></div></header><main><section class="hero"><div class="container"><div class="hero-shell"><div class="eyebrow" data-i18n="eyebrow">Global Journey</div><h1 data-i18n-html="title">Places that became<br><span>part of the story.</span></h1><p data-i18n="copy">The full interactive travel engine is back — 3D globe, animated aircraft, automatic and manual routes, city memories, photo slots, arrival states, and the city strip.</p><div class="hero-actions"><a class="button primary" href="#globe" data-i18n="explore">Explore the globe ↓</a><a class="button" href="journey.html" data-i18n="journey">My journey ↗</a></div></div></div></section><section id="globe" class="map-section"><div class="container"><div class="frame-shell"><iframe class="globe-frame" src="globe.html" title="Timothy interactive global journey" loading="eager" allow="fullscreen"></iframe><div class="frame-note"><span data-i18n="note">The globe engine is isolated so route animations can never force-scroll the portfolio page.</span><a href="globe.html" target="_blank" data-i18n="fullscreen">Open full-screen globe ↗</a></div></div></div></section></main><footer><div class="container footer-inner"><span>© <span id="year"></span> Timothy Nathaniel Laurencio</span><a href="#top" data-i18n="backTop">Back to top ↑</a></div></footer><script>
-const I18N={en:{navWork:'Work',navAbout:'About',navSkills:'Skills',navJourney:'Journey',navTravel:'Travel',navContact:'Contact',letsTalk:"Let's Talk ↗",eyebrow:'Global Journey',title:'Places that became<br><span>part of the story.</span>',copy:'The full interactive travel engine is back — 3D globe, animated aircraft, automatic and manual routes, city memories, photo slots, arrival states, and the city strip.',explore:'Explore the globe ↓',journey:'My journey ↗',note:'The globe engine is isolated so route animations can never force-scroll the portfolio page.',fullscreen:'Open full-screen globe ↗',backTop:'Back to top ↑'},zh:{navWork:'作品',navAbout:'关于我',navSkills:'技能',navJourney:'经历',navTravel:'旅行',navContact:'联系',letsTalk:'联系我 ↗',eyebrow:'环球旅程',title:'这些地方也成为了<br><span>故事的一部分。</span>',copy:'完整的互动旅行系统已经恢复：3D 地球、飞机动画、自动与手动路线、城市回忆、照片位置、抵达状态以及城市列表。',explore:'探索互动地球 ↓',journey:'我的经历 ↗',note:'地球引擎被独立放置，因此路线动画不会再强制拉动整个作品集页面。',fullscreen:'全屏打开地球 ↗',backTop:'返回顶部 ↑'}};let currentLanguage=localStorage.getItem('portfolio-language')==='zh'?'zh':'en';let soundEnabled=localStorage.getItem('portfolio-sound')!=='off';let audioCtx=null;function playSound(f=520,d=.045){if(!soundEnabled)return;try{audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.frequency.value=f;g.gain.setValueAtTime(.028,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+d);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+d)}catch(e){}}function applyLanguage(l){currentLanguage=I18N[l]?l:'en';localStorage.setItem('portfolio-language',currentLanguage);document.documentElement.lang=currentLanguage==='zh'?'zh-CN':'en';document.querySelectorAll('[data-i18n]').forEach(el=>{const v=I18N[currentLanguage]?.[el.dataset.i18n];if(v!==undefined)el.textContent=v});document.querySelectorAll('[data-i18n-html]').forEach(el=>{const v=I18N[currentLanguage]?.[el.dataset.i18nHtml];if(v!==undefined)el.innerHTML=v});document.getElementById('language-button').textContent=currentLanguage==='en'?'中文':'EN'}function applyTheme(t){document.body.classList.toggle('dark',t==='dark');document.documentElement.classList.remove('dark-preload');localStorage.setItem('portfolio-theme',t);document.getElementById('theme-icon').className=t==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';const meta=document.querySelector('meta[name=\"theme-color\"]');if(meta)meta.setAttribute('content',t==='dark'?'#060b13':'#f6f8fb')}function updateSound(){document.getElementById('sound-icon').className=soundEnabled?'fa-solid fa-volume-high':'fa-solid fa-volume-xmark'}document.addEventListener('DOMContentLoaded',()=>{document.getElementById('year').textContent=new Date().getFullYear();applyTheme(localStorage.getItem('portfolio-theme')||'dark');applyLanguage(currentLanguage);updateSound();document.getElementById('language-button').onclick=()=>{applyLanguage(currentLanguage==='en'?'zh':'en');playSound(650,.055)};document.getElementById('theme-button').onclick=()=>{applyTheme(document.body.classList.contains('dark')?'light':'dark');playSound()};document.getElementById('sound-button').onclick=()=>{soundEnabled=!soundEnabled;localStorage.setItem('portfolio-sound',soundEnabled?'on':'off');updateSound();if(soundEnabled)playSound(720,.07)};const p=document.getElementById('scroll-progress');const u=()=>{const h=document.documentElement.scrollHeight-innerHeight;p.style.width=(h>0?scrollY/h*100:0)+'%'};addEventListener('scroll',u,{passive:true});u()});</script>
-<!-- Global interactive tools -->
-<button id="terminal-launcher" class="terminal-launcher" type="button" aria-label="Open mini terminal">&gt;_</button>
-<div id="terminal-overlay" class="terminal-overlay" aria-hidden="true">
-  <div class="terminal-window" role="dialog" aria-modal="true" aria-label="Portfolio terminal">
-    <div class="terminal-top"><div class="terminal-dots"><span></span><span></span><span></span></div><button id="terminal-close" class="terminal-close" type="button" aria-label="Close terminal">×</button></div>
-    <div id="terminal-body" class="terminal-body">
-      <div id="terminal-output" class="terminal-output"></div>
-      <label class="terminal-input-row"><span>timothy@portfolio:~$</span><input id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal command"></label>
-    </div>
+</div></div></header>
+
+<main>
+<section class="hero">
+ <div class="container journey-hero-grid">
+   <div class="reveal">
+     <div class="eyebrow" data-en="Journey" data-zh="经历">Journey</div>
+     <h1 data-en="Some chapters were planned. Most made sense later." data-zh="有些章节是计划好的，更多的是后来才明白它们的意义。">Some chapters were planned. Most made sense later.</h1>
+     <p class="section-copy" data-en="University, tutoring, community, moving to China, faith, and travel never felt like separate stories to me. They all changed how I think about work and people." data-zh="大学、辅导、社群、来到中国、信仰和旅行，对我来说从来不是彼此分开的故事。它们一起改变了我对工作和人的理解。">University, tutoring, community, moving to China, faith, and travel never felt like separate stories to me. They all changed how I think about work and people.</p>
+   </div>
+   <div class="campus-card reveal">
+     <img class="hero-campus" src="bg-photo.jpeg" alt="Nanjing Tech University">
+     <div class="school-badge">
+       <img src="logo-njtech.png" alt="NJTech">
+       <div><strong>Nanjing Tech University</strong><span>Nanjing · 2022 — 2026</span></div>
+     </div>
+   </div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="container">
+   <div class="section-head reveal">
+     <div class="eyebrow" data-en="Timeline" data-zh="时间线">Timeline</div>
+     <h2 data-en="A few chapters that changed how I work." data-zh="一些改变了我做事方式的阶段。">A few chapters that changed how I work.</h2>
+   </div>
+   <div class="timeline reveal">
+     <article class="timeline-item"><span class="timeline-dot"></span><div class="timeline-year">2022 — 2026</div><h3>Nanjing Tech University</h3><p data-en="Computer Science, software projects, coursework, debugging, and learning how much I still wanted to understand." data-zh="计算机科学、软件项目、课程、调试，以及越来越清楚自己还有很多想学的东西。">Computer Science, software projects, coursework, debugging, and learning how much I still wanted to understand.</p></article>
+     <article class="timeline-item"><span class="timeline-dot"></span><div class="timeline-year">2022 — 2023</div><h3>PPIT Nanjing</h3><p data-en="Community work taught me that organizing people is often harder than organizing code — and just as useful." data-zh="社群工作让我发现，协调人有时比协调代码更难，但同样重要。">Community work taught me that organizing people is often harder than organizing code — and just as useful.</p></article>
+     <article class="timeline-item"><span class="timeline-dot"></span><div class="timeline-year">2017 — 2020</div><h3 data-en="Private Tutor" data-zh="私人辅导">Private Tutor</h3><p data-en="Teaching forced me to explain things clearly. That habit still helps whenever I write, debug, or work with someone else." data-zh="教学逼着我把事情讲清楚。这个习惯到现在仍然帮助我写东西、调试和与人协作。">Teaching forced me to explain things clearly. That habit still helps whenever I write, debug, or work with someone else.</p></article>
+   </div>
+ </div>
+</section>
+
+<section class="section" id="places">
+ <div class="container">
+   <div class="places-head reveal">
+     <div>
+       <div class="eyebrow" data-en="Places" data-zh="地点">Places</div>
+       <div class="faith-note">“I can do all things through Christ who strengthens me.”<br><span>Philippians 4:13</span></div>
+     </div>
+     <div>
+       <h2 data-en="The timeline says what happened. The map reminds me where." data-zh="时间线告诉我发生了什么，地图提醒我那些事情发生在哪里。">The timeline says what happened. The map reminds me where.</h2>
+       <p data-en="Some places were home for years. Others were only a few days. I kept them together because each one left a different kind of memory." data-zh="有些地方住了很多年，有些只是短短几天。我把它们放在一起，因为每个地方都留下了不同的记忆。">Some places were home for years. Others were only a few days. I kept them together because each one left a different kind of memory.</p>
+     </div>
+   </div>
+   <div class="globe-wrap reveal"><iframe id="journeyGlobe" src="globe.html" title="Journey globe"></iframe></div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="container journey-cta reveal">
+   <div><div class="eyebrow" data-en="Next chapter" data-zh="下一章">Next chapter</div><h2 data-en="Still building the next version." data-zh="下一版，还在继续做。">Still building the next version.</h2></div>
+   <a class="button primary" href="contact.html"><span data-en="Send me a message" data-zh="给我留言">Send me a message</span></a>
+ </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© Timothy Nathaniel Laurencio</span>
+    <span data-en="Built slowly, edited often." data-zh="慢慢做，常常改。">Built slowly, edited often.</span>
   </div>
-</div>
-<div id="resume-modal" class="resume-modal" aria-hidden="true">
-  <div class="resume-shell" role="dialog" aria-modal="true" aria-label="Resume quick view">
-    <div class="resume-head"><strong>Timothy Nathaniel Laurencio · Resume</strong><div class="resume-actions"><a class="resume-action" href="TimothyNathanielLaurencio_CV.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Open</span></a><a class="resume-action" href="TimothyNathanielLaurencio_CV.pdf" download><i class="fa-solid fa-download"></i><span>Download</span></a><button id="resume-close" class="resume-action" type="button"><i class="fa-solid fa-xmark"></i><span>Close</span></button></div></div>
-    <iframe class="resume-frame" src="TimothyNathanielLaurencio_CV.pdf#view=FitH" title="Timothy Nathaniel Laurencio resume"></iframe>
-  </div>
-</div>
-<div id="easter-toast" class="easter-toast">TNL // curiosity → build → connect ✦</div>
-<div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div><div id="custom-cursor-dot" class="custom-cursor-dot" aria-hidden="true"></div>
+</footer>
+<div class="toast" id="toast"></div>
 
 <script>
-/* =====================================================
-   GLOBAL INTERACTIVE UPGRADE
-===================================================== */
-(()=>{
-  const $=s=>document.querySelector(s);
-  const terminalOverlay=$('#terminal-overlay'), terminalInput=$('#terminal-input'), terminalOutput=$('#terminal-output'), terminalBody=$('#terminal-body');
-  const resumeModal=$('#resume-modal');
-  const terminalText={
-    en:{welcome:'TNL Portfolio Terminal v1.0\nType “help” to see available commands.',help:'help      show commands\nabout     quick introduction\nprojects  jump to selected work\nskills    jump to skills\njourney   open Journey\ntravel    open interactive globe\ncontact   open Contact\nresume    preview resume\ntheme     toggle light/dark\nclear     clear terminal',about:'Timothy Nathaniel Laurencio — Software Engineer · Computer Science. I build practical software, interactive products, and keep exploring AI + automation.',unknown:'Command not found. Type “help”.'},
-    zh:{welcome:'TNL 作品集终端 v1.0\n输入 “help” 查看命令。',help:'help      查看命令\nabout     简介\nprojects  查看作品\nskills    查看技能\njourney   打开经历\ntravel    打开互动地球\ncontact   联系我\nresume    预览简历\ntheme     切换明暗模式\nclear     清空终端',about:'Timothy Nathaniel Laurencio — 软件工程师 · 计算机科学。我喜欢构建实用的软件与互动产品，并持续探索 AI 与自动化。',unknown:'未找到命令。输入 “help”。'}
-  };
-  const lang=()=>((typeof currentLanguage!=='undefined'&&currentLanguage==='zh')?'zh':'en');
-  function addLine(text,cls=''){if(!terminalOutput)return;const div=document.createElement('div');div.className='terminal-line '+cls;div.textContent=text;terminalOutput.appendChild(div);terminalBody.scrollTop=terminalBody.scrollHeight}
-  function terminalOpen(){if(!terminalOverlay)return;terminalOverlay.classList.add('open');terminalOverlay.setAttribute('aria-hidden','false');if(!terminalOutput.dataset.booted){addLine(terminalText[lang()].welcome,'terminal-system');terminalOutput.dataset.booted='1'}setTimeout(()=>terminalInput?.focus(),60);if(typeof playSound==='function')playSound(700,.05)}
-  function terminalClose(){terminalOverlay?.classList.remove('open');terminalOverlay?.setAttribute('aria-hidden','true')}
-  $('#terminal-launcher')?.addEventListener('click',terminalOpen);$('#terminal-close')?.addEventListener('click',terminalClose);terminalOverlay?.addEventListener('click',e=>{if(e.target===terminalOverlay)terminalClose()});
-  const nav=(url)=>{location.href=url};
-  function runCommand(raw){const cmd=raw.trim().toLowerCase();if(!cmd)return;addLine('timothy@portfolio:~$ '+raw,'terminal-muted');const txt=terminalText[lang()];switch(cmd){case'help':addLine(txt.help);break;case'about':addLine(txt.about,'terminal-success');break;case'projects':terminalClose();nav('index.html#work');break;case'skills':terminalClose();nav('index.html#skills');break;case'journey':terminalClose();nav('journey.html');break;case'travel':terminalClose();nav('travel.html');break;case'contact':terminalClose();nav('contact.html');break;case'resume':terminalClose();openResume();break;case'theme':if(typeof applyTheme==='function')applyTheme(document.body.classList.contains('dark')?'light':'dark');addLine('Theme toggled ✓','terminal-success');break;case'clear':terminalOutput.innerHTML='';break;default:addLine(txt.unknown)}}
-  terminalInput?.addEventListener('keydown',e=>{if(e.key==='Enter'){runCommand(terminalInput.value);terminalInput.value=''}if(e.key==='Escape')terminalClose()});
-  function openResume(){if(!resumeModal)return;resumeModal.classList.add('open');resumeModal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';if(typeof playSound==='function')playSound(760,.06)}
-  function closeResume(){resumeModal?.classList.remove('open');resumeModal?.setAttribute('aria-hidden','true');document.body.style.overflow=''}
-  $('#resume-close')?.addEventListener('click',closeResume);resumeModal?.addEventListener('click',e=>{if(e.target===resumeModal)closeResume()});
-  document.addEventListener('click',e=>{const link=e.target.closest('a[href$="TimothyNathanielLaurencio_CV.pdf"],a[href*="TimothyNathanielLaurencio_CV.pdf#"]');if(link&&!link.closest('.resume-head')){e.preventDefault();openResume()}});
-  document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='`'){e.preventDefault();terminalOpen()}if(e.key==='Escape'){terminalClose();closeResume()}});
-  // TNL easter egg
-  let typed='';const toast=$('#easter-toast');document.addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey||/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName))return;if(e.key.length===1){typed=(typed+e.key.toLowerCase()).slice(-3);if(typed==='tnl'){toast?.classList.add('show');if(typeof playSound==='function'){playSound(720,.05);setTimeout(()=>playSound(920,.06),70)}setTimeout(()=>toast?.classList.remove('show'),2200);typed=''}}});
-  // Custom cursor
-  if(matchMedia('(pointer:fine)').matches){const cursor=$('#custom-cursor'),dot=$('#custom-cursor-dot');document.body.classList.add('has-custom-cursor');addEventListener('pointermove',e=>{if(cursor){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'}if(dot){dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px'}});document.addEventListener('pointerover',e=>{if(e.target.closest('a,button,[role="button"],input,textarea,select,.gallery-card,.contact-card'))cursor?.classList.add('hover')});document.addEventListener('pointerout',e=>{if(e.target.closest('a,button,[role="button"],input,textarea,select,.gallery-card,.contact-card'))cursor?.classList.remove('hover')})}
-})();
+
+const THEME_KEY='portfolio-theme';
+const LANG_KEY='portfolio-language';
+const SOUND_KEY='portfolio-sound';
+
+function currentTheme(){return document.documentElement.dataset.theme||'dark'}
+function applyTheme(theme){
+  const t=theme==='light'?'light':'dark';
+  document.documentElement.dataset.theme=t;
+  document.body.classList.toggle('dark',t==='dark');
+  localStorage.setItem(THEME_KEY,t);
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.setAttribute('content',t==='dark'?'#000000':'#EDE3D3');
+  const icon=document.querySelector('#themeBtn i');
+  if(icon)icon.className=t==='dark'?'fa-regular fa-sun':'fa-regular fa-moon';
+}
+function toggleTheme(){applyTheme(currentTheme()==='dark'?'light':'dark')}
+
+let currentLanguage=localStorage.getItem(LANG_KEY)||'en';
+function applyLanguage(lang){
+  currentLanguage=lang==='zh'?'zh':'en';
+  localStorage.setItem(LANG_KEY,currentLanguage);
+  document.documentElement.lang=currentLanguage==='zh'?'zh-CN':'en';
+  document.querySelectorAll('[data-en][data-zh]').forEach(el=>{
+    el.textContent=el.dataset[currentLanguage];
+  });
+  const btn=document.getElementById('langBtn');
+  if(btn)btn.textContent=currentLanguage==='en'?'中文':'EN';
+}
+
+let soundOn=localStorage.getItem(SOUND_KEY)!=='off';
+function clickSound(freq=520){
+  if(!soundOn)return;
+  try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    const osc=ctx.createOscillator(),gain=ctx.createGain();
+    osc.frequency.value=freq;osc.type='sine';
+    gain.gain.setValueAtTime(.025,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+.07);
+    osc.connect(gain);gain.connect(ctx.destination);osc.start();osc.stop(ctx.currentTime+.08);
+  }catch(e){}
+}
+function toggleSound(){
+  soundOn=!soundOn;
+  localStorage.setItem(SOUND_KEY,soundOn?'on':'off');
+  const i=document.querySelector('#soundBtn i');
+  if(i)i.className=soundOn?'fa-solid fa-volume-low':'fa-solid fa-volume-xmark';
+}
+
+function showToast(message){
+  const t=document.getElementById('toast');
+  if(!t)return;
+  t.textContent=message;t.classList.add('show');
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer=setTimeout(()=>t.classList.remove('show'),1500);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  applyTheme(localStorage.getItem(THEME_KEY)||'dark');
+  applyLanguage(currentLanguage);
+  const si=document.querySelector('#soundBtn i');
+  if(si)si.className=soundOn?'fa-solid fa-volume-low':'fa-solid fa-volume-xmark';
+
+  document.getElementById('themeBtn')?.addEventListener('click',()=>{toggleTheme();clickSound(610)});
+  document.getElementById('soundBtn')?.addEventListener('click',toggleSound);
+  document.getElementById('langBtn')?.addEventListener('click',()=>applyLanguage(currentLanguage==='en'?'zh':'en'));
+  document.getElementById('mobileBtn')?.addEventListener('click',()=>{
+    document.getElementById('mobileMenu')?.classList.toggle('open');
+  });
+
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+});
+
+const originalApplyTheme=applyTheme;
+applyTheme=function(theme){
+  originalApplyTheme(theme);
+  const frame=document.getElementById('journeyGlobe');
+  if(frame?.contentWindow)frame.contentWindow.postMessage({type:'tnl-theme',theme:currentTheme()},'*');
+}
+window.addEventListener('load',()=>{
+  const frame=document.getElementById('journeyGlobe');
+  frame?.addEventListener('load',()=>frame.contentWindow.postMessage({type:'tnl-theme',theme:currentTheme()},'*'));
+});
 </script>
 </body></html>
