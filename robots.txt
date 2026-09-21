@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://timothy1016.github.io/Portofolio-Profesional-TimothyNathanielLaurencio/sitemap.xml
+Sitemap: https://timothy1016.github.io/TimothyNathanielLaurencio/sitemap.xml
