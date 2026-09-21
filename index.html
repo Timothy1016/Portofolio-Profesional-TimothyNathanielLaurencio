@@ -787,6 +787,19 @@ header{border-radius:20px}
 </style><link rel="stylesheet" href="site-brand.css">
 <link rel="stylesheet" href="site-header.css">
 <script src="site-header.js" defer></script>
+<style id="travel-surface-style">
+/* Let the journey introduction share the page background in both themes. */
+html[data-theme] #travel-preview,
+html[data-theme] #travel-preview .travel-preview,
+body.dark #travel-preview,
+body.dark #travel-preview .travel-preview,
+#travel-preview,
+#travel-preview .travel-preview {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+</style>
 </head><body id="top"><div id="scroll-progress"></div><div class="page-grid"></div><div class="ambient one"></div><div class="ambient two"></div><header id="site-header" data-theme-source="body"><div class="site-header-inner">
 <a class="brand" href="index.html#home" aria-label="Timothy Nathaniel Laurencio — Home"><img src="logo.png" alt="Timothy Nathaniel Laurencio logo" width="76" height="76"></a>
 <nav id="site-primary-nav" class="nav-links" aria-label="Primary navigation">
